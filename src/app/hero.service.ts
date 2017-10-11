@@ -4,8 +4,18 @@ import { Hero } from './hero';
 
 @Injectable()
 export class HeroService {
+	getHeroesSlowly(): Promise<Hero[]> {
+		return new Promise(resolve => {
+			setTimeout(() => resolve(this.getHeroes()), 2000)
+		});
+	}
+
 	getHeroes(): Promise<Hero[]> {
-		console.log(123);
 		return Promise.resolve(HEROES);
+	}
+
+	getHero(id: number): Promise<Hero> {
+		return this.getHeroes()
+			.then(heroes => heroes.find(hero => hero.id === id));
 	}
 }
