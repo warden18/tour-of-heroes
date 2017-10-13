@@ -24,17 +24,24 @@ export class HeroService {
 			.then(response => response.json() as Hero)
 	}
 
-	update (hero: Hero): Promise<Hero> {
+	update(hero: Hero): Promise<Hero> {
 		return this.http.put(`api/heroes/${hero._id}`, hero)
 			.toPromise()
 			.then(() => hero)
 			.catch(this.handleError);
 	}
 
-	create (name: string, index: number): Promise<Hero> {
+	create(name: string, index: number): Promise<Hero> {
 		return this.http.post('api/heroes', { name: name, index: index })
 			.toPromise()
 			.then(res => res.json() as Hero)
+			.catch(this.handleError)
+	}
+
+	delete(id: string): Promise<void> {
+		return this.http.delete(`api/heroes/${id}`)
+			.toPromise()
+			.then(() => null)
 			.catch(this.handleError)
 	}
 }
