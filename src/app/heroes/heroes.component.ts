@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { HEROES } from '../mock-heroes';
 import { Hero } from '../hero';
 import { HeroService } from '../hero.service';
 import { Router } from '@angular/router';
@@ -10,10 +9,6 @@ import { Router } from '@angular/router';
   styleUrls: ['./heroes.component.css']
 })
 export class HeroesComponent implements OnInit {
-	hero: Hero = {
-  	heroId: 1,
-  	name: 'Flash'
-  };
   heroes: Hero[];
   selectedHero: Hero;
 
@@ -32,6 +27,6 @@ export class HeroesComponent implements OnInit {
   }
 
   goToDetail(): void {
-    this.router.navigate([ 'detail', this.selectedHero.heroId ]);
+    this.router.navigate([ 'detail', this.selectedHero._id ]);
   }
 }
