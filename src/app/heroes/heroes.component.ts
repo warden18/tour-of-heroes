@@ -11,7 +11,7 @@ import { Router } from '@angular/router';
 })
 export class HeroesComponent implements OnInit {
 	hero: Hero = {
-  	id: 1,
+  	heroId: 1,
   	name: 'Flash'
   };
   heroes: Hero[];
@@ -24,7 +24,7 @@ export class HeroesComponent implements OnInit {
   }
 
   getHeroes() {
-    this.heroService.getHeroesSlowly().then((heroes) => this.heroes = heroes); 
+    this.heroService.getHeroes().then((heroes) => this.heroes = heroes); 
   }
 
   onSelect(hero: Hero): void {
@@ -32,6 +32,6 @@ export class HeroesComponent implements OnInit {
   }
 
   goToDetail(): void {
-    this.router.navigate([ 'detail', this.selectedHero.id ]);
+    this.router.navigate([ 'detail', this.selectedHero.heroId ]);
   }
 }
